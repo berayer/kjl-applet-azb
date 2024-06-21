@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { Application } from '@manycore/custom-ksg-viewer-sdk'
-import { Menu as MenuIcon } from '@vicons/carbon'
+import {
+  Menu as MenuIcon,
+  ScanAlt,
+  ModelAlt,
+  CicsExplorer,
+  Document,
+  LogoGlassdoor,
+  QrCode,
+  Blog
+} from '@vicons/carbon'
 
 const sceneRef = ref<null | HTMLDivElement>()
 let app: Application | null = null
@@ -22,9 +31,6 @@ async function loadScene(designId: string, orderId: number) {
 }
 
 onMounted(() => {
-  setTimeout(() => {
-    showLoading.value = false
-  }, 2000)
   // 创建场景
   app = new Application(sceneRef.value!)
   // 窗口变化时重绘场景
@@ -50,13 +56,22 @@ onMounted(() => {
       </div>
       <!-- 功能固钉 -->
       <n-float-button :right="15" :bottom="20" style="z-index: 999" @click="actionShow = true">
-        <n-icon>
-          <menu-icon />
-        </n-icon>
+        <m-icon name="carbon:menu" />
       </n-float-button>
       <n-drawer v-model:show="actionShow" placement="bottom">
-        <n-drawer-content title="斯通纳">
-          《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。
+        <n-drawer-content title="功能菜单" style="--n-body-padding: 0">
+          <n-scrollbar>
+            <div class="grid justify-center gap-2 px-3 py-4" style="grid-template-columns: repeat(auto-fill, 80px)">
+              <action-button icon="carbon:scan-alt" label="扫描条码" />
+              <action-button icon="carbon:model-alt" label="显示模式" />
+
+              <action-button icon="carbon:blog" label="显示户型" />
+              <action-button icon="carbon:qr-code" label="输入条码" />
+              <action-button icon="carbon:document" label="板件清单" />
+              <action-button icon="carbon:cics-explorer" label="模型爆炸" />
+              <action-button icon="carbon:logo-glassdoor" label="显示门板" />
+            </div>
+          </n-scrollbar>
         </n-drawer-content>
       </n-drawer>
       <!-- 场景canvas -->
