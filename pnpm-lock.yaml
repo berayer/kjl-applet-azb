@@ -20,6 +20,9 @@ importers:
       axios:
         specifier: ^1.7.2
         version: 1.7.2
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       vue:
         specifier: ^3.4.21
         version: 3.4.29(typescript@5.4.5)
@@ -30,6 +33,9 @@ importers:
       '@iconify/vue':
         specifier: ^4.1.2
         version: 4.1.2(vue@3.4.29(typescript@5.4.5))
+      '@types/lodash':
+        specifier: ^4.17.5
+        version: 4.17.5
       '@types/node':
         specifier: ^20.14.2
         version: 20.14.2
