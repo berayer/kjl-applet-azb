@@ -27,6 +27,13 @@ export default defineConfig({
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
+    proxy: {
+      '/v2': {
+        target: 'http://localhost:9001',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/v2/, '')
+      }
+    },
     https: {
       key: readFileSync('./keys/agent2-key.pem'),
       cert: readFileSync('./keys/agent2-cert.pem')
