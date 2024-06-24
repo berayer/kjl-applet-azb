@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Application, ERenderMode } from '@manycore/custom-ksg-viewer-sdk'
 import { debounce } from 'lodash'
-import { getByBarCode, getByOrderNo } from '@/api'
-import wx from 'weixin-js-sdk'
+import { getByOrderNo } from '@/api'
+import { wxScanQRCode } from '@/sdk/wxsdk'
 
 const boardInfo = ref({
   orderNo: '',
@@ -148,16 +148,14 @@ function changeRenderModel(mode: ERenderMode) {
 }
 
 function wxTest() {
-  wx.scanQRCode({
-    needResult: 1,
-    scanType: ['qrCode', 'barCode'],
-    success: (res) => {
+  wxScanQRCode(
+    (res) => {
       console.log(res)
     },
-    fail: (res) => {
+    (res) => {
       console.log(res)
     }
-  })
+  )
 }
 
 onMounted(() => {
